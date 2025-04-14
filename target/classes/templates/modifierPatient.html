@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Modify Patient</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.5/css/bootstrap.min.css">
+</head>
+<body>
+<div class="p-3">
+
+    <div class="card">
+        <div class="card-header">Edit Patient</div>
+        <div class="card-body">
+            <form th:action="@{/save(page=${page}, keyword=${keyword})}" method="post">
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="nom" name="nom" th:value="${patient.nom}">
+                </div>
+                <div class="mb-3">
+                    <label for="dateNaissance" class="form-label">Date de Naissance</label>
+                    <input type="date" class="form-control" id="dateNaissance" name="dateNaissance" th:value="${#dates.format(patient.dateNaissance, 'yyyy-MM-dd')}">
+                </div>
+                <div class="mb-3">
+                    <label for="malade" class="form-label">Malade</label>
+                    <input type="checkbox" class="form-check-input" id="malade" name="malade" th:checked="${patient.malade}">
+                </div>
+                <div class="mb-3">
+                    <label for="score" class="form-label">Score</label>
+                    <input type="number" class="form-control" id="score" name="score" th:value="${patient.score}">
+                </div>
+                <input type="hidden" name="id" th:value="${patient.id}"/>
+
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a th:href="@{/index(page=${page}, keyword=${keyword})}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
